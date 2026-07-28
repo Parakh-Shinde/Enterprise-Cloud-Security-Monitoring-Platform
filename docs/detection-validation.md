@@ -148,7 +148,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Add URI-specific exceptions only after confirming legitimate behavior.
 - Retain decoded evidence while applying field-level access controls.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-003-xss-attempt.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-003 evidence</summary>
+
+![DET-003 Cross-Site Scripting validation](../screenshots/detections/DET-003-xss-attempt.png)
+
+</details>
 
 ---
 
@@ -176,7 +183,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Increase risk when the actor is new, rarely used, or operating from an unusual source.
 - Split access-key creation from policy escalation if alert volume becomes difficult to triage.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-004-iam-privilege-escalation.png`
+**Partial validation evidence:**
+
+<details>
+<summary>View sanitized DET-004 evidence</summary>
+
+![DET-004 IAM Privilege Escalation validation](../screenshots/detections/DET-004-iam-privilege-escalation.png)
+
+</details>
 
 ---
 
@@ -204,7 +218,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Correlate with the actor's recent IAM and authentication activity.
 - Add an approved-maintenance lookup but never suppress successful destructive events completely.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-005-cloudtrail-tampering.png`
+**Synthetic validation evidence:**
+
+<details>
+<summary>View DET-005 synthetic evidence</summary>
+
+![DET-005 CloudTrail Tampering synthetic validation](../screenshots/detections/DET-005-cloudtrail-tampering.png)
+
+</details>
 
 ---
 
@@ -232,7 +253,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Enrich the finding with security-group owner, resource tags, VPC, and attached assets.
 - Keep administrative-port exposure at Critical severity.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-006-public-security-group.png`
+**Synthetic validation evidence:**
+
+<details>
+<summary>View DET-006 synthetic evidence</summary>
+
+![DET-006 Public Security Group synthetic validation](../screenshots/detections/DET-006-public-security-group.png)
+
+</details>
 
 ---
 
@@ -258,7 +286,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Suppress approved scanner sources only during defined testing windows.
 - Prioritize sources matching multiple rule categories or targeting several hosts.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-007-repeated-waf-matches.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-007 evidence</summary>
+
+![DET-007 Repeated WAF Matches validation](../screenshots/detections/DET-007-repeated-waf-matches.png)
+
+</details>`
 
 ---
 
@@ -284,7 +319,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Correlate with WAF matches and Apache errors.
 - Increase severity when the response indicates successful file retrieval.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-008-directory-traversal.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-008 evidence</summary>
+
+![DET-008 Directory Traversal validation](../screenshots/detections/DET-008-directory-traversal.png)
+
+</details>
 
 ---
 
@@ -310,7 +352,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Add user-agent diversity, HTTP status, and request rate.
 - Increase severity when reconnaissance is followed by an exploit attempt.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-009-web-reconnaissance.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-009 evidence</summary>
+
+![DET-009 Web Reconnaissance validation](../screenshots/detections/DET-009-web-reconnaissance.png)
+
+</details>
 
 ---
 
@@ -336,7 +385,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Correlate with new-device, impossible-travel, and off-hours context where available.
 - Raise severity when the successful user differs from the usernames used during failures.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-010-successful-ssh-after-failures.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-010 evidence</summary>
+
+![DET-010 Successful SSH Login After Failures validation](../screenshots/detections/DET-010-successful-ssh-after-failures.png)
+
+</details>
 
 ## Operational Limitations
 
