@@ -91,7 +91,6 @@ A detection is considered end-to-end validated when all applicable criteria are 
 ![DET-001 SSH Brute Force validation](../screenshots/detections/DET-001-ssh-brute-force.png)
 
 </details>
-
 ---
 
 ### DET-002 — SQL Injection Attempt
