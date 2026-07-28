@@ -333,14 +333,21 @@ The Splunk Dashboard Studio dashboard provides the following views:
 - Historical top destination ports
 - Live security investigation queue
 - High-volume web sources
+### SOC Dashboard Overview
 
-![SOC Dashboard Overview](screenshots/dashboard/soc-dashboard-overview.png)
+![SOC Dashboard Overview](screenshots/dashboard/soc-dashboard-overview.png.png)
 
-![Cloud and Web Security Monitoring](screenshots/dashboard/soc-dashboard-cloud-activity.png)
+### Cloud and Web Security Monitoring
 
-![WAF and Log Source Health](screenshots/dashboard/soc-dashboard-waf-health.png)
+![Cloud and Web Security Monitoring](screenshots/dashboard/soc-dashboard-cloud-activity.png.png)
 
-![Network and Investigation View](screenshots/dashboard/soc-dashboard-network-investigation.png)
+### WAF and Log Source Health
+
+![WAF and Log Source Health](screenshots/dashboard/soc-dashboard-waf-health.png.png)
+
+### Network and Investigation View
+
+![Network and Investigation View](screenshots/dashboard/soc-dashboard-network-investigation.png.png)
 
 The dashboard source is available at:
 
