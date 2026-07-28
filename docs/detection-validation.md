@@ -88,7 +88,7 @@ A detection is considered end-to-end validated when all applicable criteria are 
 <details>
 <summary>View sanitized DET-001 evidence</summary>
 
-![DET-001 SSH Brute Force validation](../screenshots/detections/DET-001-ssh-brute-force.png)
+![DET-001 SSH Brute Force validation](../screenshots/detections/DET-001-ssh-brute-force-result.png)
 
 </details>
 ---
