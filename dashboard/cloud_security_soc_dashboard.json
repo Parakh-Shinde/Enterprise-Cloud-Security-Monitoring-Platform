@@ -1,0 +1,591 @@
+{
+    "title": "Enterprise Cloud Security SOC Command Center",
+    "description": "Real-time AWS cloud, network, authentication and web security monitoring dashboard.",
+    "inputs": {
+        "input_global_trp": {
+            "options": {
+                "defaultValue": "-24h@h,now",
+                "token": "global_time"
+            },
+            "title": "Investigation Time Range",
+            "type": "input.timerange"
+        }
+    },
+    "defaults": {
+        "dataSources": {
+            "ds.search": {
+                "options": {
+                    "queryParameters": {
+                        "earliest": "$global_time.earliest$",
+                        "latest": "$global_time.latest$"
+                    }
+                }
+            },
+            "ds.spl2": {
+                "options": {
+                    "queryParameters": {
+                        "earliest": "$global_time.earliest$",
+                        "latest": "$global_time.latest$"
+                    }
+                }
+            }
+        },
+        "visualizations": {
+            "global": {
+                "showProgressBar": true
+            }
+        }
+    },
+    "visualizations": {
+        "viz_3XWtSUCr": {
+            "context": {
+                "healthColumnFormatEditorConfig": {
+                    "string": {
+                        "unitPosition": "after"
+                    }
+                },
+                "healthRowBackgroundColorsEditorConfig": [
+                    {
+                        "match": "DELAYED",
+                        "value": "#FE3A3A"
+                    },
+                    {
+                        "match": "STALE",
+                        "value": "#ffd442"
+                    },
+                    {
+                        "match": "Healthy",
+                        "value": "#C3CC33"
+                    }
+                ],
+                "healthRowColorsEditorConfig": [
+                    "#53a051"
+                ]
+            },
+            "dataSources": {
+                "primary": "ds_n916j8Ug"
+            },
+            "options": {
+                "columnFormat": {
+                    "health": {
+                        "align": "auto",
+                        "data": "> table | seriesByName(\"health\") | formatByType(healthColumnFormatEditorConfig)",
+                        "headerAlign": "auto",
+                        "rowBackgroundColors": "> table | seriesByName(\"health\") | matchValue(healthRowBackgroundColorsEditorConfig)",
+                        "rowColors": "> table | seriesByName(\"health\") | pick(healthRowColorsEditorConfig)",
+                        "textOverflow": "break-word"
+                    }
+                },
+                "count": 20,
+                "tableFormat": {
+                    "headerAlign": "center"
+                }
+            },
+            "title": "Log Source Health",
+            "type": "splunk.table"
+        },
+        "viz_EVkq7hSY": {
+            "containerOptions": {},
+            "context": {
+                "majorColorEditorConfig": [
+                    {
+                        "to": 20,
+                        "value": "#D41F1F"
+                    },
+                    {
+                        "from": 20,
+                        "to": 40,
+                        "value": "#D94E17"
+                    },
+                    {
+                        "from": 40,
+                        "to": 60,
+                        "value": "#CBA700"
+                    },
+                    {
+                        "from": 60,
+                        "to": 80,
+                        "value": "#669922"
+                    },
+                    {
+                        "from": 80,
+                        "value": "#118832"
+                    }
+                ],
+                "tableFormatEditorConfig": {
+                    "colors": [
+                        "#1F4D5B",
+                        "#555555"
+                    ]
+                }
+            },
+            "dataSources": {
+                "primary": "ds_7dQKkCWm"
+            },
+            "options": {
+                "count": 20,
+                "tableFormat": {
+                    "align": "center",
+                    "headerAlign": "center",
+                    "rowColors": "> table | gradient(tableFormatEditorConfig)"
+                }
+            },
+            "showLastUpdated": false,
+            "showProgressBar": true,
+            "title": "AWS API Activity",
+            "type": "splunk.table"
+        },
+        "viz_FJvOF5ME": {
+            "dataSources": {
+                "primary": "ds_z7xrOUoA"
+            },
+            "title": "Security Events Over Time",
+            "type": "splunk.line"
+        },
+        "viz_HCsEURET": {
+            "dataSources": {
+                "primary": "ds_aJLU7EsT"
+            },
+            "options": {
+                "y2": "> primary | frameBySeriesNames('requests')"
+            },
+            "type": "splunk.bar"
+        },
+        "viz_KZ83HVP6": {
+            "dataSources": {
+                "primary": "ds_SVXdqp49"
+            },
+            "options": {
+                "xAxisTitleText": "Sources IP",
+                "yAxisTitleText": "Request Count"
+            },
+            "title": "Top Web Source IPs",
+            "type": "splunk.bar"
+        },
+        "viz_OkBFojF3": {
+            "dataSources": {
+                "primary": "ds_v4kBTww9"
+            },
+            "title": "High-Volume Web Sources",
+            "type": "splunk.table"
+        },
+        "viz_WLYdVvB9": {
+            "containerOptions": {},
+            "context": {
+                "trendColorEditorConfig": [
+                    {
+                        "to": 0,
+                        "value": "#9E2520"
+                    },
+                    {
+                        "from": 0,
+                        "value": "#1C6B2D"
+                    }
+                ]
+            },
+            "dataSources": {
+                "primary": "ds_tI6hHWGr"
+            },
+            "options": {
+                "backgroundColor": "#000000",
+                "majorColor": "#dc4e41",
+                "trendColor": "> trendValue | rangeValue(trendColorEditorConfig)"
+            },
+            "title": "Failed SSH Attempts",
+            "type": "splunk.singlevalue"
+        },
+        "viz_WqR2JsTC": {
+            "dataSources": {
+                "primary": "ds_mL3oe40d"
+            },
+            "title": "WAF Inspected Requests",
+            "type": "splunk.singlevalue"
+        },
+        "viz_WvQKimvt": {
+            "containerOptions": {
+                "description": {
+                    "color": "#ffffff"
+                },
+                "title": {
+                    "color": "#ffffff"
+                }
+            },
+            "dataSources": {
+                "primary": "ds_Ls7zZ9pj"
+            },
+            "options": {
+                "backgroundColor": "#000000",
+                "majorColor": "#dc4e41",
+                "trendColor": "#f1813f"
+            },
+            "title": "Total Ingested Events",
+            "type": "splunk.singlevalue"
+        },
+        "viz_dD6T8TrW": {
+            "dataSources": {
+                "primary": "ds_zCxHCpvG"
+            },
+            "title": "AWS WAF Rule Match Distribution.",
+            "type": "splunk.bar"
+        },
+        "viz_e7RZs1RG": {
+            "containerOptions": {
+                "visibility": {
+                    "hideWhenNoData": true
+                }
+            },
+            "dataSources": {
+                "primary": "ds_1c853bhO"
+            },
+            "options": {
+                "labelDisplay": "valuesAndPercentage",
+                "legendDisplay": "right",
+                "seriesColors": [
+                    "transparent",
+                    "#009CEB",
+                    "#00CDAF",
+                    "#DD9900",
+                    "#FF677B",
+                    "#CB2196",
+                    "#813193",
+                    "#0051B5",
+                    "#008C80",
+                    "#99B100",
+                    "#FFA476",
+                    "#FF6ACE",
+                    "#AE8CFF",
+                    "#00689D",
+                    "#00490A",
+                    "#465D00",
+                    "#9D6300",
+                    "#F6540B",
+                    "#FF969E",
+                    "#E47BFE"
+                ],
+                "showDonutHole": true
+            },
+            "title": "Historical VPC Traffic Disposition — Ingestion Paused",
+            "type": "splunk.pie"
+        },
+        "viz_f0IwhjlU": {
+            "dataSources": {
+                "primary": "ds_RTmuPCI3"
+            },
+            "options": {
+                "count": 20
+            },
+            "title": "Live Security Investigation Queue",
+            "type": "splunk.table"
+        },
+        "viz_gjHED9H2": {
+            "dataSources": {
+                "primary": "ds_d5nbRkuV"
+            },
+            "options": {
+                "xAxisTitleText": "WAF Rule",
+                "yAxisLabelVisibility": "show",
+                "yAxisMajorTickVisibility": "show",
+                "yAxisTitleText": "Match Count"
+            },
+            "title": "AWS WAF Rule Matches",
+            "type": "splunk.bar"
+        },
+        "viz_kW7DTFMh": {
+            "containerOptions": {
+                "visibility": {
+                    "hideWhenNoData": true
+                }
+            },
+            "dataSources": {
+                "primary": "ds_iC8ZmXMp"
+            },
+            "options": {
+                "dataValuesDisplay": "all",
+                "stackMode": "stacked",
+                "xAxisMajorTickSize": 8,
+                "xAxisTitleText": "Port and Service",
+                "yAxisTitleText": "Connections"
+            },
+            "title": "Historical Top Destination Ports — Ingestion Paused",
+            "type": "splunk.bar"
+        }
+    },
+    "dataSources": {
+        "ds_1c853bhO": {
+            "name": "ds_vpc_traffic_action",
+            "options": {
+                "query": "index=vpcflow earliest=-7d@d latest=now\r\n| rex field=_raw \"(?<action>ACCEPT|REJECT)\"\r\n| eval traffic_status=case(\r\n    action=\"ACCEPT\",\"🟢 ACCEPT\",\r\n    action=\"REJECT\",\"🔴 REJECT\",\r\n    true(),\"⚪ UNKNOWN\"\r\n  )\r\n| stats count AS connections BY traffic_status\r\n| sort -connections"
+            },
+            "type": "ds.search"
+        },
+        "ds_7dQKkCWm": {
+            "name": "ds_cloudtrail_api",
+            "options": {
+                "query": "index=cloudtrail sourcetype=aws:cloudtrail earliest=-24h\r\n| eval actor=coalesce(userIdentity.arn,userIdentity.principalId,userIdentity.userName,\"Unknown\")\r\n| eval source_ip=coalesce(sourceIPAddress,\"Unknown\")\r\n| eval result=if(isnull(errorCode) OR errorCode=\"\",\"SUCCESS\",\"FAILED: \".errorCode)\r\n| eval risk=case(\r\n    eventName IN (\"StopLogging\",\"DeleteTrail\",\"PutRolePolicy\",\"PutUserPolicy\",\"AttachUserPolicy\",\"AttachRolePolicy\"),\"🔴 CRITICAL\",\r\n    eventName IN (\"AuthorizeSecurityGroupIngress\",\"CreateAccessKey\",\"UpdateAssumeRolePolicy\"),\"🟠 HIGH\",\r\n    result!=\"SUCCESS\",\"🟡 REVIEW\",\r\n    true(),\"🔵 INFO\"\r\n)\r\n| table _time risk eventName eventSource actor source_ip awsRegion result\r\n| rename _time AS \"Time\",\r\n         risk AS \"Risk\",\r\n         eventName AS \"API Action\",\r\n         eventSource AS \"AWS Service\",\r\n         actor AS \"Actor\",\r\n         source_ip AS \"Source IP\",\r\n         awsRegion AS \"Region\",\r\n         result AS \"Result\"\r\n| sort -Time"
+            },
+            "type": "ds.search"
+        },
+        "ds_Ls7zZ9pj": {
+            "name": "ds_total_security_events",
+            "options": {
+                "enableSmartSources": true,
+                "query": "(index=web OR index=linux OR index=vpcflow OR index=cloudtrail OR index=waf)\r\nearliest=$global_time.earliest$ latest=$global_time.latest$\r\n| stats count AS total_events"
+            },
+            "type": "ds.search"
+        },
+        "ds_RTmuPCI3": {
+            "name": "ds_investigation_queue",
+            "options": {
+                "query": "index=linux sourcetype=linux_secure earliest=-7d@d latest=now\r\n\"Invalid user\" NOT \"Connection reset\"\r\n| rex field=_raw \"Invalid user (?<target>\\S+) from (?<source_ip>\\d{1,3}(?:\\.\\d{1,3}){3})\"\r\n| eval event_type=\"SSH Invalid User\"\r\n| eval severity=\"MEDIUM\"\r\n| eval details=\"Invalid SSH username: \".target\r\n| table _time severity event_type host source_ip details\r\n\r\n| append [\r\n    search index=waf earliest=-7d@d latest=now\r\n    | spath path=ruleGroupList{}.nonTerminatingMatchingRules{}.ruleId output=matched_rule\r\n    | where mvcount(matched_rule)>0\r\n    | rename httpRequest.clientIp AS source_ip\r\n    | eval event_type=\"WAF Rule Match\"\r\n    | eval severity=\"HIGH\"\r\n    | eval host=\"AWS WAF\"\r\n    | eval details=\"Matched rules: \".mvjoin(matched_rule,\", \")\r\n    | table _time severity event_type host source_ip details\r\n]\r\n\r\n| append [\r\n    search index=cloudtrail sourcetype=aws:cloudtrail earliest=-7d@d latest=now\r\n    eventName IN (\r\n      \"CreateAccessKey\",\"AttachUserPolicy\",\"PutUserPolicy\",\r\n      \"UpdateAssumeRolePolicy\",\"StopLogging\",\"DeleteTrail\",\r\n      \"AuthorizeSecurityGroupIngress\",\"PutBucketPolicy\"\r\n    )\r\n    | eval event_type=\"High-Risk AWS Action\"\r\n    | eval severity=\"HIGH\"\r\n    | eval host=eventSource\r\n    | eval source_ip=sourceIPAddress\r\n    | eval details=\"AWS action: \".eventName\r\n    | table _time severity event_type host source_ip details\r\n]\r\n\r\n| eval severity=case(\r\n    severity=\"CRITICAL\",\"🟣 CRITICAL\",\r\n    severity=\"HIGH\",\"🔴 HIGH\",\r\n    severity=\"MEDIUM\",\"🟠 MEDIUM\",\r\n    severity=\"LOW\",\"🟡 LOW\",\r\n    true(),\"🔵 INFO\"\r\n  )\r\n| sort -_time\r\n| head 100"
+            },
+            "type": "ds.search"
+        },
+        "ds_SVXdqp49": {
+            "name": "ds_top_web_ip",
+            "options": {
+                "query": "index=waf earliest=$global_time.earliest$ latest=$global_time.latest$\r\n| spath\r\n| rename httpRequest.clientIp AS client_ip\r\n| where isnotnull(client_ip)\r\n| stats count AS requests BY client_ip\r\n| sort -requests\r\n| head 10"
+            },
+            "type": "ds.search"
+        },
+        "ds_TecZYCc9": {
+            "name": "WAF Inspected Requests",
+            "options": {
+                "query": "index=waf earliest=$global_time.earliest$ latest=$global_time.latest$\n| stats count AS waf_requests"
+            },
+            "type": "ds.search"
+        },
+        "ds_aJLU7EsT": {
+            "name": "Top External Web Sources IP",
+            "options": {
+                "query": "index=web sourcetype=access_combined earliest=-24h\r\n| rex field=_raw \"^(?<source_ip>\\S+)\"\r\n| where NOT cidrmatch(\"10.0.0.0/8\",source_ip)\r\n    AND NOT cidrmatch(\"172.16.0.0/12\",source_ip)\r\n    AND NOT cidrmatch(\"192.168.0.0/16\",source_ip)\r\n    AND source_ip!=\"-\"\r\n| stats count AS requests values(host) AS targeted_hosts BY source_ip\r\n| sort -requests\r\n| head 10"
+            },
+            "type": "ds.search"
+        },
+        "ds_d5nbRkuV": {
+            "name": "ds_waf_rule_matches",
+            "options": {
+                "query": "index=waf earliest=-7d@d latest=now\r\n| spath path=ruleGroupList{}.nonTerminatingMatchingRules{}.ruleId output=matched_rule\r\n| mvexpand matched_rule\r\n| where isnotnull(matched_rule) AND len(matched_rule)>0\r\n| stats count AS matches BY matched_rule\r\n| sort -matches\r\n| head 10"
+            },
+            "type": "ds.search"
+        },
+        "ds_iC8ZmXMp": {
+            "name": "ds_top_destination_ports",
+            "options": {
+                "query": "index=vpcflow earliest=-7d@d latest=now\r\n| eval destination_port=coalesce(dest_port,destPort)\r\n| where isnotnull(destination_port)\r\n| stats count AS connections BY destination_port\r\n| eval service=case(\r\n    destination_port=22,\"SSH\",\r\n    destination_port=53,\"DNS\",\r\n    destination_port=80,\"HTTP\",\r\n    destination_port=443,\"HTTPS\",\r\n    destination_port=3306,\"MySQL\",\r\n    destination_port=8000,\"Splunk Web\",\r\n    destination_port=8088,\"Splunk HEC\",\r\n    destination_port=9997,\"Splunk Forwarder\",\r\n    true(),\"Other\"\r\n  )\r\n| eval port_service=destination_port.\" - \".service\r\n| sort -connections\r\n| head 10\r\n| table port_service connections"
+            },
+            "type": "ds.search"
+        },
+        "ds_mL3oe40d": {
+            "name": "ds_waf_requeste",
+            "options": {
+                "query": "index=waf earliest=$global_time.earliest$ latest=$global_time.latest$\n| stats count AS waf_requests"
+            },
+            "type": "ds.search"
+        },
+        "ds_n916j8Ug": {
+            "name": "ds_log_source_health",
+            "options": {
+                "query": "(index=cloudtrail OR index=linux OR index=web OR index=waf) earliest=-24h\r\n| stats count latest(_time) AS last_seen BY index sourcetype host\r\n| eval minutes_ago=round((now()-last_seen)/60,1)\r\n| eval health=case(\r\n    sourcetype=\"apache:error\" AND minutes_ago>30,\"QUIET\",\r\n    minutes_ago<=30,\"HEALTHY\",\r\n    minutes_ago<=180,\"DELAYED\",\r\n    true(),\"STALE\"\r\n)\r\n| eval status=case(\r\n    health=\"HEALTHY\",\"🟢 HEALTHY\",\r\n    health=\"DELAYED\",\"🟠 DELAYED\",\r\n    health=\"STALE\",\"🔴 STALE\",\r\n    health=\"QUIET\",\"🔵 QUIET\"\r\n)\r\n| convert ctime(last_seen)\r\n| eval sort_order=case(\r\n    health=\"STALE\",1,\r\n    health=\"DELAYED\",2,\r\n    health=\"QUIET\",3,\r\n    health=\"HEALTHY\",4\r\n)\r\n| sort sort_order index host sourcetype\r\n| table status index host sourcetype count last_seen minutes_ago\r\n| rename status AS \"Health\",\r\n         index AS \"Index\",\r\n         host AS \"Host\",\r\n         sourcetype AS \"Source Type\",\r\n         count AS \"Events\",\r\n         last_seen AS \"Last Seen\",\r\n         minutes_ago AS \"Minutes Ago\""
+            },
+            "type": "ds.search"
+        },
+        "ds_tI6hHWGr": {
+            "name": "DS_failed_ssh",
+            "options": {
+                "query": "index=linux sourcetype=linux_secure\r\n(\"Failed password\" OR \"Invalid user\" OR \"authentication failure\")\r\nearliest=$global_time.earliest$ latest=$global_time.latest$\r\n| search NOT \"Connection reset\"\r\n| stats count AS failed_ssh_attempts"
+            },
+            "type": "ds.search"
+        },
+        "ds_v4kBTww9": {
+            "name": "Top External Web Source IPs.",
+            "options": {
+                "query": "index=web sourcetype=access_combined earliest=-24h\r\n| rex field=_raw \"^(?<source_ip>\\S+)\"\r\n| where NOT cidrmatch(\"10.0.0.0/8\",source_ip)\r\n    AND NOT cidrmatch(\"172.16.0.0/12\",source_ip)\r\n    AND NOT cidrmatch(\"192.168.0.0/16\",source_ip)\r\n    AND source_ip!=\"-\"\r\n| stats count AS requests values(host) AS targeted_hosts BY source_ip\r\n| sort -requests\r\n| head 10",
+                "refresh": 1,
+                "refreshType": "interval"
+            },
+            "type": "ds.search"
+        },
+        "ds_z7xrOUoA": {
+            "name": "ds_Security_timeline",
+            "options": {
+                "query": "(index=web OR index=linux OR index=cloudtrail OR index=waf)\r\nearliest=-7d@d latest=now\r\n| timechart span=6h count BY index limit=10 useother=false"
+            },
+            "type": "ds.search"
+        },
+        "ds_zCxHCpvG": {
+            "name": "AWS WAF Rule Match Distribution.",
+            "options": {
+                "query": "index=waf earliest=-24h\r\n| spath path=ruleGroupList{} output=group_object\r\n| mvexpand group_object\r\n| spath input=group_object path=nonTerminatingMatchingRules{} output=rule_object\r\n| mvexpand rule_object\r\n| spath input=rule_object path=ruleId output=matched_rule\r\n| where isnotnull(matched_rule)\r\n| stats count AS matches BY matched_rule\r\n| sort -matches\r\n| head 10"
+            },
+            "type": "ds.search"
+        }
+    },
+    "layout": {
+        "globalInputs": [
+            "input_global_trp"
+        ],
+        "layoutDefinitions": {
+            "layout_1": {
+                "options": {
+                    "height": 960,
+                    "width": 1440
+                },
+                "structure": [
+                    {
+                        "item": "viz_WvQKimvt",
+                        "position": {
+                            "h": 400,
+                            "w": 720,
+                            "x": 720,
+                            "y": 335
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_WLYdVvB9",
+                        "position": {
+                            "h": 1200,
+                            "w": 720,
+                            "x": 0,
+                            "y": 335
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_WqR2JsTC",
+                        "position": {
+                            "h": 800,
+                            "w": 720,
+                            "x": 720,
+                            "y": 735
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_EVkq7hSY",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 1535
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_FJvOF5ME",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 1935
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_KZ83HVP6",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 2335
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_gjHED9H2",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 2735
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_3XWtSUCr",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 3135
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_e7RZs1RG",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 3535
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_kW7DTFMh",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 3935
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_f0IwhjlU",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 4335
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_OkBFojF3",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 4735
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_HCsEURET",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 5135
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_dD6T8TrW",
+                        "position": {
+                            "h": 400,
+                            "w": 1440,
+                            "x": 0,
+                            "y": 5535
+                        },
+                        "type": "block"
+                    }
+                ],
+                "type": "grid"
+            }
+        },
+        "options": {},
+        "tabs": {
+            "items": [
+                {
+                    "label": "New tab",
+                    "layoutId": "layout_1"
+                }
+            ]
+        }
+    },
+    "applicationProperties": {
+        "collapseNavigation": true
+    }
+}
