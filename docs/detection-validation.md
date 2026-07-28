@@ -115,7 +115,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Add HTTP status, URI, user agent, and WAF outcome to the investigation view.
 - Maintain an allowlist for known testing windows rather than weakening the detection.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-002-sql-injection.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-002 evidence</summary>
+
+![DET-001 SSH Brute Force validation](../screenshots/detections/DET-002-sql-injection.png-result.png)
+
+</details>
 
 ---
 
