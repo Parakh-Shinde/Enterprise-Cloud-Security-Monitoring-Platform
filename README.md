@@ -349,10 +349,13 @@ The Splunk Dashboard Studio dashboard provides the following views:
 
 ![Network and Investigation View](screenshots/dashboard/soc-dashboard-network-investigation.png.png)
 
-The dashboard source is available at:
+### Dashboard Configuration
 
-[`dashboard/cloud_security_soc_dashboard.json`](dashboard/cloud_security_soc_dashboard.json)
+The complete Splunk Dashboard Studio configuration is available for review and import:
 
+[Download Splunk SOC Dashboard JSON](dashboard/enterprise-cloud-security-soc-dashboard.json)
+
+> GitHub displays the dashboard file as JSON source code. Import it into Splunk Dashboard Studio to restore the interactive dashboard.
 ## Authorized Attack Simulations
 
 Testing was limited to the project owner’s DVWA lab and AWS resources.
