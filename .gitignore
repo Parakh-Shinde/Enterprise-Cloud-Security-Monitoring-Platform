@@ -1,0 +1,46 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+secrets/
+*.secret
+
+# AWS credentials and keys
+.aws/
+credentials
+aws_credentials
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Terraform runtime files
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Splunk sensitive local configuration
+splunk/**/local/
+splunk/etc/auth/
+splunk/etc/passwd
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
