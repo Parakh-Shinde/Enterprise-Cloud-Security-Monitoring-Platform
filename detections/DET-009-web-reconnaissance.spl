@@ -1,0 +1,34 @@
+index=web sourcetype=access_combined earliest=-15m
+| rex field=_raw "^(?<source_ip>\S+)"
+| rex field=_raw "\"(?<http_method>GET|POST|HEAD|PUT|DELETE|OPTIONS)\s+(?<request_uri>\S+)"
+| eval decoded_uri=lower(urldecode(request_uri))
+| eval request_path=mvindex(split(decoded_uri,"?"),0)
+| where like(request_path,"%/.git%")
+     OR like(request_path,"%/.env%")
+     OR like(request_path,"%/wp-admin%")
+     OR like(request_path,"%/wp-login%")
+     OR like(request_path,"%/phpmyadmin%")
+     OR like(request_path,"%/server-status%")
+     OR like(request_path,"%/cgi-bin%")
+     OR like(request_path,"%/admin%")
+     OR like(request_path,"%/backup%")
+     OR like(request_path,"%/config%")
+     OR like(request_path,"%/robots.txt%")
+     OR like(request_path,"%/sitemap.xml%")
+| stats count AS request_count
+        dc(request_path) AS unique_paths
+        values(request_path) AS requested_paths
+        values(host) AS targeted_hosts
+        latest(_time) AS last_seen
+        BY source_ip
+| where isnotnull(source_ip) AND (unique_paths>=5 OR request_count>=10)
+| eval detection_id="DET-009",
+       detection="Web Reconnaissance and Enumeration",
+       severity=case(
+           unique_paths>=15 OR request_count>=50,"HIGH",
+           true(),"MEDIUM"
+       ),
+       mitre_technique="T1595"
+| convert ctime(last_seen)
+| table detection_id detection severity source_ip request_count unique_paths targeted_hosts requested_paths last_seen mitre_technique
+| sort -request_count

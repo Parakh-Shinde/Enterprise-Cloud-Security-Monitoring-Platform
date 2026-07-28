@@ -1,0 +1,23 @@
+index=cloudtrail sourcetype=aws:cloudtrail earliest=-15m
+eventName IN (
+    "StopLogging",
+    "DeleteTrail",
+    "UpdateTrail",
+    "PutEventSelectors",
+    "DeleteEventDataStore",
+    "StopEventDataStoreIngestion"
+)
+| eval actor=coalesce(userIdentity.arn,userIdentity.principalId,userIdentity.userName,"Unknown")
+| eval source_ip=coalesce(sourceIPAddress,"Unknown")
+| eval trail=coalesce(requestParameters.name,requestParameters.eventDataStore,"Unknown")
+| eval result=if(isnull(errorCode) OR trim(errorCode)="" OR lower(trim(errorCode))="success","SUCCESS","FAILED")
+| eval severity=case(
+    result="SUCCESS" AND eventName IN ("StopLogging","DeleteTrail","DeleteEventDataStore","StopEventDataStoreIngestion"),"CRITICAL",
+    result="SUCCESS","HIGH",
+    true(),"MEDIUM"
+)
+| eval detection_id="DET-005",
+       detection="CloudTrail Logging Modified or Disabled",
+       mitre_technique="T1562.008"
+| table _time detection_id detection severity actor source_ip eventName trail result errorCode awsRegion userAgent mitre_technique
+| sort -_time

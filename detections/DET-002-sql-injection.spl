@@ -1,0 +1,28 @@
+index=web sourcetype=access_combined earliest=-15m
+| rex field=_raw "^(?<source_ip>\S+)"
+| eval decoded_request=lower(urldecode(_raw))
+| where like(decoded_request,"%union select%")
+     OR like(decoded_request,"%information_schema%")
+     OR like(decoded_request,"% or 1=1%")
+     OR like(decoded_request,"%' or '1'='1%")
+     OR like(decoded_request,"%sleep(%")
+     OR like(decoded_request,"%benchmark(%")
+     OR like(decoded_request,"%extractvalue(%")
+     OR like(decoded_request,"%updatexml(%")
+| stats count AS attempts
+        values(host) AS affected_hosts
+        values(decoded_request) AS evidence
+        latest(_time) AS last_seen
+        BY source_ip
+| where isnotnull(source_ip)
+| eval detection_id="DET-002",
+       detection="SQL Injection Attempt",
+       severity=case(
+           attempts>=20,"CRITICAL",
+           attempts>=5,"HIGH",
+           true(),"MEDIUM"
+       ),
+       mitre_technique="T1190"
+| convert ctime(last_seen)
+| table detection_id detection severity source_ip attempts affected_hosts last_seen mitre_technique evidence
+| sort -attempts

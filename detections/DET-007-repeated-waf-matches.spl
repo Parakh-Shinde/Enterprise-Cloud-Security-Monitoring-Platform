@@ -1,0 +1,27 @@
+index=waf earliest=-15m
+| spath path=httpRequest.clientIp output=source_ip
+| spath path=ruleGroupList{} output=group_object
+| mvexpand group_object
+| spath input=group_object path=ruleGroupId output=rule_group
+| spath input=group_object path=nonTerminatingMatchingRules{} output=rule_object
+| mvexpand rule_object
+| spath input=rule_object path=ruleId output=matched_rule
+| where isnotnull(matched_rule)
+| stats count AS match_count
+        values(rule_group) AS rule_groups
+        values(matched_rule) AS matched_rules
+        latest(_time) AS last_seen
+        BY source_ip action
+| where isnotnull(source_ip) AND match_count>=5
+| eval detection_id="DET-007",
+       detection="Repeated AWS WAF Rule Matches",
+       severity=case(
+           match_count>=25,"HIGH",
+           match_count>=10,"MEDIUM",
+           true(),"LOW"
+       ),
+       enforcement_mode=if(action="BLOCK","BLOCKING","MONITORING"),
+       mitre_technique="T1190"
+| convert ctime(last_seen)
+| table detection_id detection severity source_ip match_count rule_groups matched_rules action enforcement_mode last_seen mitre_technique
+| sort -match_count

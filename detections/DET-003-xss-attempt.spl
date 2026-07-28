@@ -1,0 +1,26 @@
+index=web sourcetype=access_combined earliest=-15m
+| rex field=_raw "^(?<source_ip>\S+)"
+| eval decoded_request=lower(urldecode(_raw))
+| where like(decoded_request,"%<script%")
+     OR like(decoded_request,"%javascript:%")
+     OR like(decoded_request,"%onerror=%")
+     OR like(decoded_request,"%onload=%")
+     OR like(decoded_request,"%<svg%")
+     OR like(decoded_request,"%<iframe%")
+| stats count AS attempts
+        values(host) AS affected_hosts
+        values(decoded_request) AS evidence
+        latest(_time) AS last_seen
+        BY source_ip
+| where isnotnull(source_ip)
+| eval detection_id="DET-003",
+       detection="Cross-Site Scripting Attempt",
+       severity=case(
+           attempts>=20,"CRITICAL",
+           attempts>=5,"HIGH",
+           true(),"MEDIUM"
+       ),
+       mitre_technique="T1190"
+| convert ctime(last_seen)
+| table detection_id detection severity source_ip attempts affected_hosts last_seen mitre_technique evidence
+| sort -attempts

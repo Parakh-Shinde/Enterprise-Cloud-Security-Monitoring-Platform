@@ -1,0 +1,19 @@
+index=linux sourcetype=linux_secure earliest=-15m
+("Invalid user" OR "Failed password")
+| rex field=_raw "from (?<source_ip>\d{1,3}(?:\.\d{1,3}){3})"
+| stats count AS failed_attempts
+        values(host) AS affected_hosts
+        latest(_time) AS last_seen
+        BY source_ip
+| where isnotnull(source_ip) AND failed_attempts>=5
+| eval detection_id="DET-001",
+       detection="SSH Brute Force",
+       severity=case(
+           failed_attempts>=25,"CRITICAL",
+           failed_attempts>=10,"HIGH",
+           true(),"MEDIUM"
+       ),
+       mitre_technique="T1110"
+| convert ctime(last_seen)
+| table detection_id detection severity source_ip failed_attempts affected_hosts last_seen mitre_technique
+| sort -failed_attempts

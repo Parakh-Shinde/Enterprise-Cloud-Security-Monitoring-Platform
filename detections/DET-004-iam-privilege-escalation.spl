@@ -1,0 +1,32 @@
+index=cloudtrail sourcetype=aws:cloudtrail earliest=-15m
+eventName IN (
+    "PutRolePolicy",
+    "PutUserPolicy",
+    "AttachRolePolicy",
+    "AttachUserPolicy",
+    "UpdateAssumeRolePolicy",
+    "AddUserToGroup",
+    "CreateAccessKey",
+    "CreatePolicyVersion",
+    "SetDefaultPolicyVersion"
+)
+| eval actor=coalesce(userIdentity.arn,userIdentity.principalId,userIdentity.userName,"Unknown")
+| eval source_ip=coalesce(sourceIPAddress,"Unknown")
+| eval result=if(isnull(errorCode) OR trim(errorCode)="" OR lower(trim(errorCode))="success","SUCCESS","FAILED")
+| eval target=coalesce(
+    requestParameters.roleName,
+    requestParameters.userName,
+    requestParameters.groupName,
+    requestParameters.policyArn,
+    "Unknown"
+)
+| eval severity=case(
+    result="SUCCESS" AND eventName IN ("PutRolePolicy","PutUserPolicy","AttachRolePolicy","AttachUserPolicy","UpdateAssumeRolePolicy"),"CRITICAL",
+    result="SUCCESS","HIGH",
+    true(),"MEDIUM"
+)
+| eval detection_id="DET-004",
+       detection="Potential IAM Privilege Escalation",
+       mitre_technique="T1098"
+| table _time detection_id detection severity actor source_ip eventName eventSource target result awsRegion userAgent mitre_technique
+| sort -_time

@@ -1,0 +1,28 @@
+index=cloudtrail sourcetype=aws:cloudtrail earliest=-15m
+eventName="AuthorizeSecurityGroupIngress"
+| spath path=requestParameters.groupId output=security_group_id
+| spath path=requestParameters.ipPermissions.items{}.fromPort output=from_port
+| spath path=requestParameters.ipPermissions.items{}.toPort output=to_port
+| spath path=requestParameters.ipPermissions.items{}.ipRanges.items{}.cidrIp output=ipv4_cidr
+| spath path=requestParameters.ipPermissions.items{}.ipv6Ranges.items{}.cidrIpv6 output=ipv6_cidr
+| where mvfind(ipv4_cidr,"^0\.0\.0\.0/0$")>=0
+     OR mvfind(ipv6_cidr,"^::/0$")>=0
+     OR like(_raw,"%0.0.0.0/0%")
+     OR like(_raw,"%::/0%")
+| eval actor=coalesce(userIdentity.arn,userIdentity.principalId,userIdentity.userName,"Unknown")
+| eval source_ip=coalesce(sourceIPAddress,"Unknown")
+| eval result=if(isnull(errorCode) OR trim(errorCode)="" OR lower(trim(errorCode))="success","SUCCESS","FAILED")
+| eval exposed_ports=mvzip(from_port,to_port,"-")
+| eval severity=case(
+    result="SUCCESS" AND (
+        mvfind(from_port,"^(22|3389)$")>=0
+        OR mvfind(to_port,"^(22|3389)$")>=0
+    ),"CRITICAL",
+    result="SUCCESS","HIGH",
+    true(),"MEDIUM"
+)
+| eval detection_id="DET-006",
+       detection="Security Group Opened to the Internet",
+       mitre_technique="T1562.007"
+| table _time detection_id detection severity actor source_ip security_group_id exposed_ports ipv4_cidr ipv6_cidr result awsRegion mitre_technique
+| sort -_time
