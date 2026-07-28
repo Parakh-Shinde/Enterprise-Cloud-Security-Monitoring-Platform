@@ -317,6 +317,12 @@ The project contains ten custom SPL detections. Thresholds and lookback windows 
 - Use throttling to prevent duplicate alert storms.
 - Never perform a dangerous cloud change solely to produce a detection screenshot.
 
+## Detection Validation
+
+Detailed testing methods, results, limitations, false-positive considerations, and tuning recommendations are available in the:
+
+➡️ [Detection Validation Report](../docs/detection-validation.md)
+
 ### Detection Rule Files
 
 The production SPL searches are available in the [`detections/`](detections/) directory. Each rule produces normalized fields for investigation, including detection ID, severity, source, affected assets, timestamps, and MITRE ATT&CK mapping.
