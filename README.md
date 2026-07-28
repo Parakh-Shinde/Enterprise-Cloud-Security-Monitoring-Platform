@@ -317,6 +317,24 @@ The project contains ten custom SPL detections. Thresholds and lookback windows 
 - Use throttling to prevent duplicate alert storms.
 - Never perform a dangerous cloud change solely to produce a detection screenshot.
 
+### Detection Rule Files
+
+The production SPL searches are available in the [`detections/`](detections/) directory. Each rule produces normalized fields for investigation, including detection ID, severity, source, affected assets, timestamps, and MITRE ATT&CK mapping.
+
+| ID | Detection rule | SPL file |
+|---|---|---|
+| DET-001 | SSH Brute Force | [View SPL](detections/DET-001-ssh-brute-force.spl) |
+| DET-002 | SQL Injection Attempt | [View SPL](detections/DET-002-sql-injection.spl) |
+| DET-003 | Cross-Site Scripting Attempt | [View SPL](detections/DET-003-xss-attempt.spl) |
+| DET-004 | Potential IAM Privilege Escalation | [View SPL](detections/DET-004-iam-privilege-escalation.spl) |
+| DET-005 | CloudTrail Logging Modified or Disabled | [View SPL](detections/DET-005-cloudtrail-tampering.spl) |
+| DET-006 | Security Group Opened to the Internet | [View SPL](detections/DET-006-public-security-group.spl) |
+| DET-007 | Repeated AWS WAF Rule Matches | [View SPL](detections/DET-007-repeated-waf-matches.spl) |
+| DET-008 | Directory Traversal Attempt | [View SPL](detections/DET-008-directory-traversal.spl) |
+| DET-009 | Web Reconnaissance and Enumeration | [View SPL](detections/DET-009-web-reconnaissance.spl) |
+| DET-010 | Successful SSH Login Following Multiple Failures | [View SPL](detections/DET-010-successful-ssh-after-failures.spl) |
+
+> Detection thresholds and lookback periods are configured for this lab environment. They should be baselined and tuned before production deployment.
 ## SOC Dashboard
 
 The Splunk Dashboard Studio dashboard provides the following views:
