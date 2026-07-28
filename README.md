@@ -83,7 +83,7 @@ This platform addresses that visibility gap by consolidating cloud, network, web
 
 ## Architecture
 
-![Enterprise Cloud Security SOC Architecture](architecture/enterprise-cloud-security-soc-architecture.png)
+![Enterprise Cloud Security SOC Architecture](<Enterprise Cloud Security SOC Architecture.png>)
 
 ### Architecture Overview
 
