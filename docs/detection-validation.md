@@ -120,7 +120,7 @@ A detection is considered end-to-end validated when all applicable criteria are 
 <details>
 <summary>View sanitized DET-002 evidence</summary>
 
-![DET-002 SQL Injection validation](../screenshots/detections/DET-002-sql-injection.png)
+![DET-002 SQL Injection validation](../screenshots/detections/DET-002-sql-injection-result.png)
 
 </details>
 
