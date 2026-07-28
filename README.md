@@ -1,1 +1,0 @@
-# Enterprise-Cloud-Security-Monitoring-Platform
