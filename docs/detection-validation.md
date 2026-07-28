@@ -83,7 +83,14 @@ A detection is considered end-to-end validated when all applicable criteria are 
 - Baseline normal authentication failures before changing thresholds.
 - Add username diversity and destination-host count as risk modifiers.
 
-**Planned sanitized evidence:** `screenshots/detections/DET-001-ssh-brute-force.png`
+**Validation evidence:**
+
+<details>
+<summary>View sanitized DET-001 evidence</summary>
+
+![DET-001 SSH Brute Force validation](../screenshots/detections/DET-001-ssh-brute-force.png)
+
+</details>
 
 ---
 
