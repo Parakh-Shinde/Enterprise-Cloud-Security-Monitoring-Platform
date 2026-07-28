@@ -88,6 +88,13 @@ No rule in this repository performs automated containment. Blocking IP addresses
 
 All attack simulations must be performed only against systems that you own or are explicitly authorized to test.
 
+## Detection Validation
+
+Detailed testing methods, results, limitations, false-positive considerations, and tuning recommendations are available in the:
+
+➡️ [Detection Validation Report](../docs/detection-validation.md)
+
+
 ## Expected Zero-Result Searches
 
 A search returning no events does not automatically mean that the rule is broken.
