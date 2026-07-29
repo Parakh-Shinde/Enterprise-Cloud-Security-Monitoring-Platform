@@ -4,7 +4,7 @@
 
 [![Terraform Security Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml)
 [![SPL Detection Quality Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml)
-
+[![SPL Detection Quality Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml)
 ![AWS](https://img.shields.io/badge/AWS-Cloud%20Security-FF9900?logo=amazonwebservices&logoColor=white)
 ![Splunk](https://img.shields.io/badge/Splunk-Enterprise%20SIEM-65A637?logo=splunk&logoColor=white)
 ![CloudTrail](https://img.shields.io/badge/AWS-CloudTrail-8C4FFF?logo=amazonwebservices&logoColor=white)
