@@ -609,6 +609,13 @@ Every Terraform change is automatically checked through GitHub Actions for forma
 | Sensitive information in evidence | Screenshots may contain account IDs, ARNs, IPs, or resource names | Information disclosure and attacker reconnaissance | Manual redaction before publishing | Medium | Use sanitized evidence and automated secret scanning before every GitHub commit |
 | Alert thresholds are lab-specific | Small test volumes differ from enterprise baselines | False positives or missed attacks | Controlled validation | Medium | Establish production baselines, tune thresholds, document exceptions, and measure detection quality |
 
+### Threat Model
+
+A formal STRIDE-based threat model documents the platform’s assets, trust boundaries, priority attack paths, existing controls, residual risks, and security roadmap.
+
+➡️ [View Threat Model and Risk Register](docs/threat-model.md)
+
+
 ## Security Impact
 
 The platform provides the following measurable engineering outcomes without relying on unsupported claims:
