@@ -346,6 +346,27 @@ The production SPL searches are available in the [`detections/`](detections/) di
 | DET-010 | Successful SSH Login Following Multiple Failures | [View SPL](detections/DET-010-successful-ssh-after-failures.spl) |
 
 > Detection thresholds and lookback periods are configured for this lab environment. They should be baselined and tuned before production deployment.
+
+## Detection as Code
+
+The repository includes a lightweight Python validation pipeline that automatically performs quality checks against all production SPL detections.
+
+The validator checks:
+
+- Presence of DET-001 through DET-010
+- Detection ID and filename consistency
+- Splunk index and relative lookback configuration
+- Detection name and severity assignment
+- MITRE ATT&CK technique formatting
+- Final analyst-facing table output
+- Accidental use of synthetic `makeresults` searches
+
+Every change to the SPL rules automatically triggers the validation workflow through GitHub Actions.
+
+➡️ [View Python SPL Validator](spl_detection_validator.py)  
+➡️ [View Detection Quality Workflow](.github/workflows/detection-quality.yml)
+
+
 ## SOC Dashboard
 
 The Splunk Dashboard Studio dashboard provides the following views:
