@@ -317,11 +317,13 @@ The project contains ten custom SPL detections. Thresholds and lookback windows 
 - Use throttling to prevent duplicate alert storms.
 - Never perform a dangerous cloud change solely to produce a detection screenshot.
 
-## Detection Validation
+### Detection Validation and Evidence
 
-Detailed testing methods, results, limitations, false-positive considerations, and tuning recommendations are available in the:
+All detection rules were tested using authorized lab simulations or clearly labelled synthetic events. The report includes validation methods, observed results, false-positive considerations, tuning guidance, limitations, and sanitized Splunk evidence.
 
-➡️ [Detection Validation Report](../docs/detection-validation.md)
+➡️ [View the Detection Validation Report](docs/detection-validation.md)
+
+➡️ [Browse All SPL Detection Rules](detections/README.md)
 
 ### Detection Rule Files
 
