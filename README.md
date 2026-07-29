@@ -551,6 +551,12 @@ Before closing an investigation, the analyst records:
 
 The final step is to tune the detection, update the investigation procedure and verify that all required telemetry remains healthy.
 
+### Incident Case Study
+
+A coordinated web-attack simulation was investigated across Apache and AWS WAF telemetry. The case study documents reconnaissance, SQL injection, XSS, directory traversal, detection correlation, risk assessment, response recommendations, and lessons learned.
+
+➡️ [Read the Coordinated Web Attack Incident Case Study](docs/incident-case-study.md)
+
 ### Investigation Example: Successful SSH Login After Failures
 
 1. DET-010 identifies several failed SSH attempts followed by a successful login.
