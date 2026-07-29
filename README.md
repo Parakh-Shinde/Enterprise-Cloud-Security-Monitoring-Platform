@@ -366,6 +366,12 @@ Every change to the SPL rules automatically triggers the validation workflow thr
 ➡️ [View Python SPL Validator](spl_detection_validator.py)  
 ➡️ [View Detection Quality Workflow](.github/workflows/detection-quality.yml)
 
+### Automated Validation Evidence
+
+The GitHub Actions pipeline automatically validates all production SPL detection files whenever detection content or validation logic changes.
+
+![SPL Detection Quality Checks Passed](screenshots/automation/spl-detection-quality-checks-passed.png)
+
 
 ## SOC Dashboard
 
