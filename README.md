@@ -587,6 +587,13 @@ The AWS lab architecture is reproducible through Terraform. The configuration pr
 ➡️ [View Terraform Deployment Guide](terraform/README.md)
 
 > **Security note:** This Terraform package creates a controlled lab foundation. DVWA and Splunk Enterprise require manual installation. Review the execution plan, estimated AWS charges, trusted administrator CIDR, and security settings before deployment.
+
+### Automated Security Validation
+
+Every Terraform change is automatically checked through GitHub Actions for formatting, configuration validity, and infrastructure security misconfigurations.
+
+![Terraform security checks passed](screenshots/terraform/terraform-security-checks-passed.png)
+
 ## Security Risk Assessment
 
 | Risk | Evidence or condition | Potential impact | Current control | Residual risk | Recommendation |
