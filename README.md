@@ -652,6 +652,15 @@ A formal STRIDE-based threat model documents the platform’s assets, trust boun
 
 ➡️ [View Threat Model and Risk Register](docs/threat-model.md)
 
+### Security Framework Alignment
+
+The implemented controls are mapped to NIST CSF 2.0, CIS Critical Security Controls, CIS AWS Foundations guidance, and MITRE ATT&CK. The mapping includes control evidence, implementation gaps, residual risk, and production-readiness recommendations.
+
+➡️ [View Security Control Mapping](docs/security-control-mapping.md)  
+➡️ [View Threat Model](docs/threat-model.md)  
+➡️ [View Incident Response Runbook](docs/incident-response-runbook.md)
+
+> This mapping demonstrates lab control coverage and does not represent formal compliance certification.
 
 ## Security Impact
 
