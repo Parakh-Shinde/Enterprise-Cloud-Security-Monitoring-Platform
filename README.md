@@ -581,6 +581,14 @@ Before closing an investigation, the analyst records:
 
 The final step is to tune the detection, update the investigation procedure and verify that all required telemetry remains healthy.
 
+### Incident Response Procedures
+
+A structured analyst runbook defines alert triage, evidence preservation, severity classification, investigation steps, containment approval, recovery validation, and closure criteria for all ten detections.
+
+➡️ [View Incident Response Runbook](docs/incident-response-runbook.md)  
+➡️ [View Detection Validation Report](docs/detection-validation.md)  
+➡️ [View Incident Case Study](docs/incident-case-study.md)
+
 ### Incident Case Study
 
 A coordinated web-attack simulation was investigated across Apache and AWS WAF telemetry. The case study documents reconnaissance, SQL injection, XSS, directory traversal, detection correlation, risk assessment, response recommendations, and lessons learned.
