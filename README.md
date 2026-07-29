@@ -567,6 +567,25 @@ A coordinated web-attack simulation was investigated across Apache and AWS WAF t
 6. If unauthorized, credential protection and host investigation are recommended.
 7. The evidence and final decision are documented before closure or escalation.
 
+## Infrastructure as Code
+
+The AWS lab architecture is reproducible through Terraform. The configuration provisions the core networking, compute, load-balancing, logging, IAM, and security-monitoring components used by this project.
+
+### Provisioned Components
+
+- AWS VPC, public subnets, route tables, and internet gateway
+- Two Ubuntu EC2 web servers behind an Application Load Balancer
+- Dedicated Splunk Enterprise EC2 instance
+- Restricted security groups and IMDSv2 enforcement
+- AWS CloudTrail with encrypted S3 storage and SQS notifications
+- VPC Flow Logs delivered to CloudWatch Logs
+- AWS WAF with managed rules initially operating in count mode
+- IAM instance roles using temporary credentials instead of access keys
+- Encrypted EBS volumes and S3 public-access protection
+
+➡️ [View Terraform Deployment Guide](terraform/README.md)
+
+> **Security note:** This Terraform package creates a controlled lab foundation. DVWA and Splunk Enterprise require manual installation. Review the execution plan, estimated AWS charges, trusted administrator CIDR, and security settings before deployment.
 ## Security Risk Assessment
 
 | Risk | Evidence or condition | Potential impact | Current control | Residual risk | Recommendation |
