@@ -2,7 +2,9 @@
 
 > An AWS-based security operations lab that centralizes cloud, network, web application, and Linux authentication telemetry in Splunk Enterprise for threat detection, investigation, and analyst-controlled response.
 
-[![Terraform Security Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml)
+[![Terraform Security Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-
+[![SPL Detection Quality Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml)
+Platform/actions/workflows/terraform-security.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml)
 ![AWS](https://img.shields.io/badge/AWS-Cloud%20Security-FF9900?logo=amazonaws&logoColor=white)
 ![Splunk](https://img.shields.io/badge/Splunk-Enterprise%20SIEM-65A637?logo=splunk&logoColor=white)
 ![CloudTrail](https://img.shields.io/badge/AWS-CloudTrail-8C4FFF)
