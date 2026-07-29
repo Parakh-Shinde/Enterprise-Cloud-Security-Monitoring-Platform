@@ -2,15 +2,15 @@
 
 > An AWS-based security operations lab that centralizes cloud, network, web application, and Linux authentication telemetry in Splunk Enterprise for threat detection, investigation, and analyst-controlled response.
 
-[![Terraform Security Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-
+[![Terraform Security Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml)
 [![SPL Detection Quality Checks](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/detection-quality.yml)
-Platform/actions/workflows/terraform-security.yml/badge.svg)](https://github.com/Parakh-Shinde/Enterprise-Cloud-Security-Monitoring-Platform/actions/workflows/terraform-security.yml)
-![AWS](https://img.shields.io/badge/AWS-Cloud%20Security-FF9900?logo=amazonaws&logoColor=white)
+
+![AWS](https://img.shields.io/badge/AWS-Cloud%20Security-FF9900?logo=amazonwebservices&logoColor=white)
 ![Splunk](https://img.shields.io/badge/Splunk-Enterprise%20SIEM-65A637?logo=splunk&logoColor=white)
-![CloudTrail](https://img.shields.io/badge/AWS-CloudTrail-8C4FFF)
-![WAF](https://img.shields.io/badge/AWS-WAF-FF4F8B)
+![CloudTrail](https://img.shields.io/badge/AWS-CloudTrail-8C4FFF?logo=amazonwebservices&logoColor=white)
+![WAF](https://img.shields.io/badge/AWS-WAF-FF4F8B?logo=amazonwebservices&logoColor=white)
 ![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK-E34F26)
-![Detections](https://img.shields.io/badge/Custom%20Detections-10-blue)
+![Detections](https://img.shields.io/badge/Custom%20Detections-10-0078D4)
 
 ## Project at a Glance
 
